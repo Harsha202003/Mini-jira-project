@@ -1,0 +1,150 @@
+<div class="app-header">
+  <h1>Jira Dashboard</h1>
+  <button mat-raised-button color="primary" (click)="openDialog()">
+    + Add Task
+  </button>
+</div>
+
+<div class="board">
+
+  <!-- ================= TODO COLUMN ================= -->
+  <div class="column" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[progressList, doneList]" (cdkDropListDropped)="drop($event, 'TODO')">
+
+    <div class="column-header todo-header">
+      <h3>To Do</h3>
+      <span class="count">{{ todoCount }}</span>
+    </div>
+
+    <div *ngFor="let task of todo" cdkDrag class="drag-item">
+
+      <div class="task-card" (click)="openDialog(task)">
+
+        <div class="task-header">
+          <h4>{{ task.title }}</h4>
+
+          <div class="task-actions">
+
+            <!-- Priority -->
+            <span class="priority {{task.priority}}">
+              {{ task.priority }}
+            </span>
+
+            <!-- START BUTTON -->
+            <button *ngIf="task.status === 'TODO'" class="action-btn start-btn"
+              (click)="changeStatus(task, 'IN_PROGRESS', $event)">
+              Start
+            </button>
+
+            <!-- DELETE -->
+            <button class="delete-btn" (click)="deleteTask(task, $event)">
+              ✕
+            </button>
+
+          </div>
+        </div>
+
+        <p class="description">{{ task.description }}</p>
+
+        <div class="task-footer">
+          <span>{{ task.assignee }}</span>
+          <span>{{ task.dueDate }}</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= IN PROGRESS COLUMN ================= -->
+  <div class="column" cdkDropList #progressList="cdkDropList" [cdkDropListData]="inProgress"
+    [cdkDropListConnectedTo]="[todoList, doneList]" (cdkDropListDropped)="drop($event, 'IN_PROGRESS')">
+
+    <div class="column-header progress-header">
+      <h3>In Progress</h3>
+      <span class="count">{{ inProgressCount }}</span>
+    </div>
+
+    <div *ngFor="let task of inProgress" cdkDrag class="drag-item">
+
+      <div class="task-card" (click)="openDialog(task)">
+
+        <div class="task-header">
+          <h4>{{ task.title }}</h4>
+
+          <div class="task-actions">
+
+            <!-- Priority -->
+            <span class="priority {{task.priority}}">
+              {{ task.priority }}
+            </span>
+
+            <!-- MOVE BUTTON -->
+            <button *ngIf="task.status === 'IN_PROGRESS'" class="action-btn done-btn"
+              (click)="changeStatus(task, 'DONE', $event)">
+              Move
+            </button>
+
+            <!-- DELETE -->
+            <button class="delete-btn" (click)="deleteTask(task, $event)">
+              ✕
+            </button>
+
+          </div>
+        </div>
+
+        <p class="description">{{ task.description }}</p>
+
+        <div class="task-footer">
+          <span>{{ task.assignee }}</span>
+          <span>{{ task.dueDate }}</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= DONE COLUMN ================= -->
+  <div class="column" cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList, progressList]" (cdkDropListDropped)="drop($event, 'DONE')">
+
+    <div class="column-header done-header">
+      <h3>Done</h3>
+      <span class="count">{{ doneCount }}</span>
+    </div>
+
+    <div *ngFor="let task of done" cdkDrag class="drag-item">
+
+      <div class="task-card" (click)="openDialog(task)">
+
+        <div class="task-header">
+          <h4>{{ task.title }}</h4>
+
+          <div class="task-actions">
+
+            <!-- Priority -->
+            <span class="priority {{task.priority}}">
+              {{ task.priority }}
+            </span>
+
+            <!-- DELETE -->
+            <button class="delete-btn" (click)="deleteTask(task, $event)">
+              ✕
+            </button>
+
+          </div>
+        </div>
+
+        <p class="description">{{ task.description }}</p>
+
+        <div class="task-footer">
+          <span>{{ task.assignee }}</span>
+          <span>{{ task.dueDate }}</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

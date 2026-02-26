@@ -1,0 +1,174 @@
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #f4f5f7;
+}
+
+/* ===== HEADER ===== */
+.app-header {
+  height: 70px;
+  background: #172b4d;
+  color: white;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-header h1 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ===== BOARD LAYOUT ===== */
+.board {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  height: calc(100vh - 70px);
+  /* full height minus header */
+  overflow: hidden;
+  /* remove scroll */
+}
+
+/* ===== COLUMN ===== */
+.column {
+  flex: 1;
+  background: #ebecf0;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== COLUMN HEADER ===== */
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 4px 12px;
+}
+
+.column-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.count {
+  background: #dfe1e6;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* ===== COLUMN COLORS ===== */
+.todo-header h3 {
+  color: #0052cc;
+}
+
+.progress-header h3 {
+  color: #ff8b00;
+}
+
+.done-header h3 {
+  color: #36b37e;
+}
+
+/* ===== TASK CARD ===== */
+.drag-item {
+  margin-bottom: 10px;
+}
+
+.task-card {
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(9, 30, 66, 0.25);
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.task-card:hover {
+  background: #fafbfc;
+  box-shadow: 0 4px 8px rgba(9, 30, 66, 0.25);
+}
+
+/* ===== TASK HEADER ===== */
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-header h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  color: #172b4d;
+}
+
+/* ===== ACTIONS ===== */
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ===== PRIORITY BADGE ===== */
+.priority {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.priority.HIGH {
+  background: #de350b;
+}
+
+.priority.MEDIUM {
+  background: #ff8b00;
+}
+
+.priority.LOW {
+  background: #36b37e;
+}
+
+/* ===== DELETE BUTTON ===== */
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #6b778c;
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  color: #de350b;
+  transform: scale(1.2);
+}
+
+/* ===== DESCRIPTION ===== */
+.description {
+  font-size: 12px;
+  margin: 8px 0;
+  color: #5e6c84;
+}
+
+/* ===== FOOTER ===== */
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #6b778c;
+}
